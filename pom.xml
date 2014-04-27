@@ -14,9 +14,9 @@
     
     <dependencies>
         <dependency>
-            <groupId>jdom</groupId>
-            <artifactId>jdom</artifactId>
-            <version>1.1</version>
+            <groupId>org.jdom</groupId>
+            <artifactId>jdom2</artifactId>
+            <version>2.0.5</version>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
@@ -87,7 +87,7 @@
             <configuration>
               <artifactSet>
                 <includes>
-                  <include>org.jdom:jdom</include>
+                  <include>org.jdom:jdom2</include>
                 </includes>
               </artifactSet>
             </configuration>

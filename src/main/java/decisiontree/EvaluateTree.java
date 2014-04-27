@@ -1,13 +1,13 @@
 package decisiontree;
 
-import tree.Tree;
-import tree.Node;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.Reader;
 import java.util.ArrayList;
-import org.jdom.Element;
-import org.jdom.input.SAXBuilder;
+import org.jdom2.Element;
+import org.jdom2.input.SAXBuilder;
+import tree.Node;
+import tree.Tree;
 
 public class EvaluateTree {
 

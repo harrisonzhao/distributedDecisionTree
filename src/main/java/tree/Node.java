@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  * trueChild is yes direction child node

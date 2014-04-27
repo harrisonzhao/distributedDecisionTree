@@ -17,9 +17,10 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
-import org.jdom.Element;
-import org.jdom.input.SAXBuilder;
-import org.jdom.output.XMLOutputter;
+import org.jdom2.Element;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 public class Tree {
 
@@ -176,9 +177,7 @@ public class Tree {
   }
     
   public void writeToFile(FileSystem fs, Path treePath) throws IOException {
-    //indent is " ", newlines are on
-    String indent = " ";
-    XMLOutputter outputter = new XMLOutputter(indent, true);
+    XMLOutputter outputter = new XMLOutputter();
     String treeXml = outputter.outputString(this.toElement());
 
     File treeFile = new File("tree.xml");

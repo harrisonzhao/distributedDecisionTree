@@ -1,6 +1,5 @@
 package jobs;
 
-import tree.Attribute;
 import java.io.IOException;
 import java.util.Iterator;
 import org.apache.hadoop.io.IntWritable;
@@ -10,7 +9,8 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.hadoop.mapreduce.Reducer;
-import org.jdom.output.XMLOutputter;
+import org.jdom2.output.XMLOutputter;
+import tree.Attribute;
 
 /**
  * task 1 - only run once
