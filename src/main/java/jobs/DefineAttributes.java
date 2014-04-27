@@ -21,7 +21,7 @@ import org.jdom.output.XMLOutputter;
 public class DefineAttributes {
 
   public static class Map
-          extends Mapper<NullWritable, Text, IntWritable, Text> {
+          extends Mapper<LongWritable, Text, IntWritable, Text> {
 
     private final static String DELIM = ",";
     
@@ -40,7 +40,7 @@ public class DefineAttributes {
      * value - attributeValue
      */
     @Override
-    public void map(NullWritable key, Text value, Context context)
+    public void map(LongWritable key, Text value, Context context)
             throws IOException, InterruptedException {
       String[] attributes = value.toString().split(DELIM);
 
@@ -99,6 +99,7 @@ public class DefineAttributes {
         String xmlString = 
                 outputter.outputString(attributeDefinition.toElement());
         Text outputValue = new Text(xmlString);
+        System.out.println(xmlString);
         context.write(NullWritable.get(), outputValue);
       } catch (Exception e) {
         throw new IOException(e);

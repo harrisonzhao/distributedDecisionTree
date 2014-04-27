@@ -73,6 +73,28 @@
    
    <build>
     <plugins>
+
+     <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>1.4</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <artifactSet>
+                <includes>
+                  <include>org.jdom:jdom</include>
+                </includes>
+              </artifactSet>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
      <plugin>
        <groupId>org.apache.maven.plugins</groupId>
        <artifactId>maven-jar-plugin</artifactId>
@@ -80,7 +102,7 @@
        <configuration>
         <archive>
           <manifest>
-            <mainClass>org.apache.hadoop.examples.WordCount</mainClass>
+            <mainClass>decisiontree/DecisionTreeBuilder</mainClass>
           </manifest>
         </archive>
       </configuration>
@@ -101,8 +123,9 @@
          <arguments>
             <argument>jar</argument>
             <argument>${basedir}/target/${project.artifactId}-${project.version}.jar</argument>
-            <argument>/tmp/input</argument>
+            <argument>/tmp/input/breast.csv</argument>
             <argument>/tmp/output/${maven.build.timestamp}</argument>
+            <argument>9</argument>
          </arguments>
        </configuration>
      </plugin>

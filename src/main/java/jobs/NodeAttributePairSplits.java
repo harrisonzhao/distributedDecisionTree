@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.TreeMap;
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -21,7 +22,7 @@ public class NodeAttributePairSplits {
   
   private static final String DELIM = ",";
   
-  public static class Map extends Mapper<NullWritable, Text, Text, Text> {
+  public static class Map extends Mapper<LongWritable, Text, Text, Text> {
 
     private Tree tree;
 
@@ -32,6 +33,7 @@ public class NodeAttributePairSplits {
       try {
         this.tree = Tree.loadTree(context);
       } catch (Exception e) {
+        System.out.println("Couldn't load tree");
         throw new IOException(e);
       }
     }
@@ -49,7 +51,7 @@ public class NodeAttributePairSplits {
      * output value is (attributeValue,outputClass)
      */
     @Override
-    protected void map(NullWritable key, Text value, Context context)
+    protected void map(LongWritable key, Text value, Context context)
             throws IOException, InterruptedException {
 
       String instanceString = value.toString();

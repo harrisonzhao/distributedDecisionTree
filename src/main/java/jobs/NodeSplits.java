@@ -11,7 +11,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 public class NodeSplits {
 
-  public static class Map extends Mapper<NullWritable, Text, Text, Text> {
+  public static class Map extends Mapper<LongWritable, Text, Text, Text> {
     
     public static String DELIM = ",";
     
@@ -31,7 +31,7 @@ public class NodeSplits {
      * information gain at position 2
      */
     @Override
-    public void map(NullWritable key, Text value, Context context)
+    public void map(LongWritable key, Text value, Context context)
             throws IOException, InterruptedException {
       String[] valueTokens = value.toString().split(DELIM);
 

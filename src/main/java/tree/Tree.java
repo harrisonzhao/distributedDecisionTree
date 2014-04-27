@@ -176,7 +176,9 @@ public class Tree {
   }
     
   public void writeToFile(FileSystem fs, Path treePath) throws IOException {
-    XMLOutputter outputter = new XMLOutputter();
+    //indent is " ", newlines are on
+    String indent = " ";
+    XMLOutputter outputter = new XMLOutputter(indent, true);
     String treeXml = outputter.outputString(this.toElement());
 
     File treeFile = new File("tree.xml");

@@ -57,7 +57,11 @@ public class DecisionTreeBuilder {
     Path attributePath = new Path(outputPath, "attributes");
     Path categorySplitsPath = new Path(outputPath, "categorySplits");
     Path attributeSplitsPath = new Path(outputPath, "attributeSplits");
+    FileSystem fs = FileSystem.get(conf);
+    fs.mkdirs(new Path(outputPath + "/tree"));
     Path treePath = new Path(outputPath, "tree/tree.xml");
+    fs.create(treePath);
+
 
     Job defineAttributesJob = setupDefineAttributesJob(
             conf, inputPath, attributePath);
@@ -77,7 +81,6 @@ public class DecisionTreeBuilder {
     Node treeRoot = new Node(nodeMap.size(), null, outputClassCategoryCounts);
     nodeMap.put(treeRoot.getId(), treeRoot);
     Tree tree = new Tree(treeRoot, attributes, outputClassAtIndex);
-    FileSystem fs = FileSystem.get(conf);
     tree.writeToFile(fs, treePath);
 
     boolean grewTree = true;
