@@ -147,12 +147,6 @@ public class Utilities {
     return entropy;
   }
 
-  /**
-   * @param originalCounts
-   * @param trueCounts
-   * @param falseCounts
-   * @return 
-   */
   public static double findInformationGain(
           Long[] originalCounts, 
           Long[] trueCounts, 

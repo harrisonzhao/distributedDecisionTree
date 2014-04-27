@@ -69,6 +69,9 @@ public class Tree {
     return outputClassIdMap;
   }
 
+  /*
+   * writes tree to XML element
+   */
   public Element toElement() {
     Element treeElement = new Element("tree");
     treeElement.setAttribute(
@@ -76,8 +79,8 @@ public class Tree {
             String.valueOf(outputClassAtIndex));
 
     Element attributesElement = new Element("attributes");
-    for (Attribute field : attributes) {
-      attributesElement.addContent(field.toElement());
+    for (Attribute attribute : attributes) {
+      attributesElement.addContent(attribute.toElement());
     }
     treeElement.addContent(attributesElement);
 
@@ -96,11 +99,11 @@ public class Tree {
     ArrayList<Attribute> attributes = null;
     Element attributesElement = treeElement.getChild("attributes");
     attributes = new ArrayList<Attribute>();
-    List<Element> fieldElements = 
+    List<Element> attributeElements = 
             (List<Element>) attributesElement.getChildren();
-    for (Element fieldElement : fieldElements) {
-      Attribute field = Attribute.fromElement(fieldElement);
-      attributes.add(field);
+    for (Element attributeElement : attributeElements) {
+      Attribute attribute = Attribute.fromElement(attributeElement);
+      attributes.add(attribute);
     }
 
     Tree tree = new Tree(root, attributes, outputClassAtIndex);

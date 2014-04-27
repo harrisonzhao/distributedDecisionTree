@@ -21,7 +21,7 @@ public class NodeSplits {
      * @param value
      * Splits line
      * format is:
-     * (leaf,attribute, attributeSplitRule, information gain,
+     * (leaf,attributeId, attributeSplitRule, information gain,
      * [category1:category1counts, category2:category2counts ... ], [cate ...])
      * @param context
      * @throws IOException
@@ -62,9 +62,11 @@ public class NodeSplits {
      * @param key
      * leaf node id
      * @param values
+     * output of map
      * @param context
      * @throws IOException
-     * @throws InterruptedException 
+     * @throws InterruptedException
+     * emits best split for given leaf based on highest information gain 
      */
     @Override
     public void reduce(Text key, Iterable<Text> values, Context context)

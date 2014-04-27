@@ -117,6 +117,19 @@ public class Node {
     this.falseChild = falseChild;
   }
 
+  /*
+   * format is
+   * <[nodename1] id="id" isLeaf="true/false">
+   *  <classCounts>
+   *   <classCount classCategory="categoryname1" count="countforcategory1"/>
+   *   <classCount classCategory="categoryname2" count="countforcategory2"/>
+   *  ...
+   *  </classCounts>
+   *  [split element]
+   *  [true child node]
+   *  [false child node]
+   * </[nodename1]>
+   */
   public Element toElement(String nodeName) {
     Element element = new Element(nodeName);
     element.setAttribute("id", String.valueOf(id));

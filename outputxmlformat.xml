@@ -1,0 +1,30 @@
+<tree outputClassAtIndex="index of output class after tokenizing training line">
+  <attributes>
+    <attribute index="index" isCategorical="false" min="min" max="max"/>
+    <attribute index="index" isCategorical="true">
+      <category value="category1" count="countforcategory1"/>
+      <category value="category2" count="countforcategory2"/>
+    </attribute>
+  </attributes>
+  <!-- root is the root node name -->
+  <root id="id" isLeaf="true/false">
+    <classCounts>
+      <classCount classCategory="categoryname1" count="countforcategory1"/>
+      <classCount classCategory="categoryname2" count="countforcategory2"/>
+      <!-- ... more class counts -->
+    </classCounts>
+<!-- only one split element per node either for numerical or categorical -->
+<!-- for numerical: -->
+    <split attributeId="attributeId" isCategorical="false" lessOrEqualTo="number"/>
+<!-- for categorical -->
+    <split attributeId="attributeId" isCategorical="true" equalTo="category"/>
+<!-- note for leaf nodes there will be no trueChild or falseChild nodes -->
+<!-- also note that this is recursive -->
+    <trueChild id="id" isLeaf="true/false">
+<!-- trueChild node stuff inside -->
+    </trueChild>
+    <falseChild id="id" isLeaf="true/false">
+<!-- falseChild node stuff inside -->
+    </falseChild>
+  </root>
+</tree>

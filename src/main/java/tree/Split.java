@@ -43,6 +43,13 @@ public class Split {
     return result;
   }
 
+  /*
+   * converts split to xml element
+   * for categorical, format is
+   * <split attributeId="attributeId" isCategorical="true/false" equalTo="category">
+   * for numerical, format is
+   * <split attributeId="attributeId" isCategorical="true/false" lessOrEqualTo="number">
+   */
   public Element toElement() {
     Element element = new Element("split");
     element.setAttribute("attributeId", String.valueOf(attributeId));

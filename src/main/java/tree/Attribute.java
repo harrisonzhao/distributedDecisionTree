@@ -237,10 +237,8 @@ public class Attribute implements Comparable<Attribute> {
     hash = 61 * hash + this.index;
     hash = 61 * hash + 
             (this.isCategorical != null ? this.isCategorical.hashCode() : 0);
-    
     hash = 61 * hash + (int) (Double.doubleToLongBits(this.minValue) 
             ^ (Double.doubleToLongBits(this.minValue) >>> 32));
-    
     hash = 61 * hash + (int) (Double.doubleToLongBits(this.maxValue) 
             ^ (Double.doubleToLongBits(this.maxValue) >>> 32));
     hash = 61 * hash + (int) (this.count ^ (this.count >>> 32));

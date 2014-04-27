@@ -139,8 +139,15 @@ public class DecisionTreeBuilder {
     return defineAttributesJob;
   }
   
-  /**
+  /*
    * finds best split of each tree node - attribute pair
+   * maps (X, trainingLine)-> (key, value) = 
+   * [(leafnodeId,attributeId) if categorical
+     or to (leafnodeId,attributeId,minval,maxval) if numerical,
+     (attributeValue,outputClass)]
+   * Reduces output of map -> 
+   * (leafnodeid, attributeId, attributeSplitRule, informationGain,
+   * [category1:category1counts, category2:category2counts ... ], [cate ...])
    */
   private static Job findBestCategorySplitJob(
           Configuration conf, 
@@ -165,6 +172,7 @@ public class DecisionTreeBuilder {
     return categorySplitJob;
   }
   
+  //find best splits for each leaf node
   private static Job findBestAttributeSplitJob(
           Configuration conf, 
           Path inputPath, 
@@ -190,13 +198,7 @@ public class DecisionTreeBuilder {
     return attributeSplitJob;
   }
 
-  /**
-   * loads XML file for attribute definitions
-   * @param conf
-   * @param inputPath
-   * @return ArrayList of Attributes sorted by index
-   * @throws Exception
-   */
+  //returns sorted list of attributes from XML file
   private static ArrayList<Attribute> readAttributeDefinitions(
           Configuration conf, 
           Path inputPath) 
@@ -236,6 +238,9 @@ public class DecisionTreeBuilder {
     return allAttributes;
   }
 
+  //reads splits from files
+  //parses split of form 
+  //(leafnodeId, attributeId, splitValue, infoGain, trueCounts, falseCounts)
   private static Boolean readNewSplits(
           Tree tree, 
           HashMap<Integer, Node> nodeMap, 
@@ -245,6 +250,7 @@ public class DecisionTreeBuilder {
     FileSystem fs = FileSystem.get(conf);
     FileStatus[] ls = fs.listStatus(inputPath);
 
+    //load all splits into memory
     ArrayList<String> allLines = new ArrayList<>();
     for (FileStatus fileStatus : ls) {
       if (fileStatus.getPath().getName().startsWith("part")) {
@@ -259,7 +265,7 @@ public class DecisionTreeBuilder {
       }
     }
 
-    long newLeafCount = 0;
+    //add splits if information gain > 0 else set as leaf node
     for (String line : allLines) {
       if (line.isEmpty()) {
         continue;
@@ -272,7 +278,6 @@ public class DecisionTreeBuilder {
 
       if (informationGain <= 0.0) {
         if (!node.isLeaf()) {
-          newLeafCount += node.getTotalCount();
           node.setIsLeaf(true);
         }
       } else {
