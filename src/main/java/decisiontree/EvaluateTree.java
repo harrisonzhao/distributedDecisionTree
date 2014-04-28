@@ -14,7 +14,7 @@ public class EvaluateTree {
   public static void main(String[] args) throws Exception {
 
     if (args.length != 2) {
-      System.out.println("Expected: java -jar DecisionTree.jar <treeXML> <testCSV>");
+      System.out.println("Expected: EvaluateTree.jar <treeXML> <testCSV>");
       return;
     }
 

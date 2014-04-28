@@ -1,0 +1,10 @@
+<attribute index="0" isCategorical="false" minValue="1.0" maxValue="10.0" count="541" />
+<attribute index="1" isCategorical="false" minValue="1.0" maxValue="10.0" count="541" />
+<attribute index="2" isCategorical="false" minValue="1.0" maxValue="10.0" count="541" />
+<attribute index="3" isCategorical="false" minValue="1.0" maxValue="10.0" count="541" />
+<attribute index="4" isCategorical="false" minValue="1.0" maxValue="10.0" count="541" />
+<attribute index="5" isCategorical="false" minValue="1.0" maxValue="10.0" count="541" />
+<attribute index="6" isCategorical="false" minValue="1.0" maxValue="10.0" count="541" />
+<attribute index="7" isCategorical="false" minValue="1.0" maxValue="10.0" count="541" />
+<attribute index="8" isCategorical="false" minValue="1.0" maxValue="10.0" count="541" />
+<attribute index="9" isCategorical="true" count="541"><category value="benign" count="364" /><category value="malignant" count="177" /></attribute>
