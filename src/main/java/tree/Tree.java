@@ -17,6 +17,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.filecache.DistributedCache;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
@@ -112,11 +113,9 @@ public class Tree {
     return tree;
   }
   
-  //load for mapper
-  public static Tree loadTree(Mapper.Context context) throws Exception {
-    URI[] files = context.getCacheFiles();
+  public static Tree loadTree(Configuration conf) throws Exception {
+    URI[] files = DistributedCache.getCacheFiles(conf);
     Path path = new Path(files[0].toString());
-    Configuration conf = context.getConfiguration();
     FileSystem fs = FileSystem.get(conf);
     FSDataInputStream in = fs.open(path);
     ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -144,42 +143,10 @@ public class Tree {
     return tree;
   }
   
-  //load for reducer
-  public static Tree loadTree(Reducer.Context context) throws Exception {
-    URI[] files = context.getCacheFiles();
-    Path path = new Path(files[0].toString());
-    Configuration conf = context.getConfiguration();
-    FileSystem fs = FileSystem.get(conf);
-    FSDataInputStream in = fs.open(path);
-    ByteArrayOutputStream out = new ByteArrayOutputStream();
-    IOUtils.copyBytes(in, out, conf);
-    in.close();
-    out.close();
-    String[] lines = out.toString().split("\n");
-
-    StringBuilder stringBuilder = new StringBuilder();
-    for (String line : lines) {
-      stringBuilder.append(line);
-    }
-    
-    SAXBuilder saxBuilder = new SAXBuilder();
-    Reader xmlIn = new StringReader(stringBuilder.toString());
-
-    Tree tree = null;
-    try {
-      Element treeElement = saxBuilder.build(xmlIn).getRootElement();
-      tree = Tree.fromElement(treeElement);
-    } catch (Exception e) {
-      throw new IOException("TreeXml: " + stringBuilder.toString(), e);
-    }
-
-    return tree;
-  }
-    
   public void writeToFile(FileSystem fs, Path treePath) throws IOException {
     XMLOutputter outputter = new XMLOutputter();
+    outputter.setFormat(Format.getPrettyFormat());
     String treeXml = outputter.outputString(this.toElement());
-
     File treeFile = new File("tree.xml");
     treeFile.delete();
     System.out.println("Writing tree to: " + treeFile.getAbsolutePath());

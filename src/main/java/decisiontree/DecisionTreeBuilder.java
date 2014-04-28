@@ -24,6 +24,7 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
+import org.apache.hadoop.filecache.DistributedCache;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import tree.*;
@@ -85,7 +86,7 @@ public class DecisionTreeBuilder {
 
     boolean grewTree = true;
     while (grewTree) {
-
+      DistributedCache.addCacheFile(treePath.toUri(), conf);
       Job categorySplitsJob = findBestCategorySplitJob(
               conf, dataPath, categorySplitsPath);
       result = categorySplitsJob.waitForCompletion(true);
@@ -183,7 +184,6 @@ public class DecisionTreeBuilder {
           Path treePath) 
           throws IOException {
     Job attributeSplitJob = new Job(conf, "best attribute splits");
-    attributeSplitJob.addCacheFile(treePath.toUri());
     attributeSplitJob.setJarByClass(DecisionTreeBuilder.class);
     attributeSplitJob.setMapperClass(NodeSplits.Map.class);
     attributeSplitJob.setReducerClass(NodeSplits.Reduce.class);

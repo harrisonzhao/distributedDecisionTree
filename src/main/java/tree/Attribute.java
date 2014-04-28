@@ -14,7 +14,6 @@ import org.jdom2.output.XMLOutputter;
  */
 public class Attribute implements Comparable<Attribute> {
 
-  private static String unknown = "?";
   private int index;
   private Boolean isCategorical;
   private double minValue;
@@ -72,8 +71,6 @@ public class Attribute implements Comparable<Attribute> {
 
   public void addCategoricalValue(String category) throws Exception {
     if (isCategorical != null && !isCategorical) {
-      if (category.equals(unknown))
-        return;
       throw new Exception("Attribute " + index + 
               " is numeric.  Can't accept: " + category);
     } else {

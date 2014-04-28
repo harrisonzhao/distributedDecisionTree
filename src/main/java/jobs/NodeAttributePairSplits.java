@@ -31,9 +31,8 @@ public class NodeAttributePairSplits {
             throws IOException, InterruptedException {
       super.setup(context);
       try {
-        this.tree = Tree.loadTree(context);
+        this.tree = Tree.loadTree(context.getConfiguration());
       } catch (Exception e) {
-        System.out.println("Couldn't load tree");
         throw new IOException(e);
       }
     }
@@ -117,7 +116,7 @@ public class NodeAttributePairSplits {
             throws IOException, InterruptedException {
       super.setup(context);
       try {
-        this.tree = Tree.loadTree(context);
+        this.tree = Tree.loadTree(context.getConfiguration());
       } catch (Exception e) {
         throw new IOException(e);
       }

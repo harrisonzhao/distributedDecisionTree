@@ -99,7 +99,6 @@ public class DefineAttributes {
         String xmlString = 
                 outputter.outputString(attributeDefinition.toElement());
         Text outputValue = new Text(xmlString);
-        System.out.println(xmlString);
         context.write(NullWritable.get(), outputValue);
       } catch (Exception e) {
         throw new IOException(e);
