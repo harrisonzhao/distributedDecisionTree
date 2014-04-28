@@ -15,8 +15,6 @@ import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
-import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.filecache.DistributedCache;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
@@ -27,7 +25,7 @@ public class Tree {
 
   private final int outputClassAtIndex;
   private final ArrayList<Attribute> attributes;
-  private Node root;
+  private final Node root;
 
   public Tree(
           Node root, 
@@ -56,11 +54,12 @@ public class Tree {
     return attributes.get(outputClassAtIndex);
   }
 
-  
+  //recursively evaluates a line to leaf node
   public Node evaluateToNode(ArrayList<Object> instance) {
     return root.evaluateToNode(instance);
   }
 
+  //maps each output class to an id
   public HashMap<String, Integer> createOutputClassIdMap() {
     ArrayList<String> outputClasses
             = new ArrayList<>(this.getOutputClass().getCategorySet());
@@ -71,9 +70,7 @@ public class Tree {
     return outputClassIdMap;
   }
 
-  /*
-   * writes tree to XML element
-   */
+  // writes tree to XML element
   public Element toElement() {
     Element treeElement = new Element("tree");
     treeElement.setAttribute(
@@ -113,6 +110,7 @@ public class Tree {
     return tree;
   }
   
+  //used to load tree into memory from xml file using distributedCache
   public static Tree loadTree(Configuration conf) throws Exception {
     URI[] files = DistributedCache.getCacheFiles(conf);
     Path path = new Path(files[0].toString());

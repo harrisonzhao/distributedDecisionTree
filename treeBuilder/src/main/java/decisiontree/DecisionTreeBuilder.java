@@ -47,7 +47,7 @@ public class DecisionTreeBuilder {
     String[] otherArgs = 
             new GenericOptionsParser(conf, args).getRemainingArgs();
     if (otherArgs.length != 3) {
-      System.err.println("Usage: decisiontree <in> <out> outputClassAtIndex");
+      System.err.println("expected arguments: <in> <out> outputClassAtIndex");
       System.exit(2);
     }
 
@@ -269,6 +269,7 @@ public class DecisionTreeBuilder {
     }
 
     //add splits if information gain > 0 else set as leaf node
+    //processes output of findBestAttributeSplitJob
     for (String line : allLines) {
       if (line.isEmpty()) {
         continue;

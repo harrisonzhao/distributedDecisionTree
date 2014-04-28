@@ -179,25 +179,29 @@ public class NodeAttributePairSplits {
 
       HashMap<String, Long[]> splitCounts = new HashMap<>();
       //iterate through all categories for given attribute
+      //create a count array for each possible and put as (key, countArray) pair
       for (String split : attribute.getCategorySet()) {
         Long[] countArray = new Long[outputClassCount];
         Arrays.fill(countArray, 0l);
         splitCounts.put(split, countArray);
       }
 
+      //iterate through each (attributeValue,outputClass) value pair
+      //add to original counts and SplitCounts index corresponding to categoryID
       Iterator<Text> iter = values.iterator();
       while (iter.hasNext()) {
         Text textValue = iter.next();
         String[] tokens = textValue.toString().split(DELIM);
         String attributeValue = tokens[0];
-        String targetCategory = tokens[1];
+        String outputClass = tokens[1];
 
-        int categoryId = outputClassIdMap.get(targetCategory);
+        int categoryId = outputClassIdMap.get(outputClass);
         Long[] counts = splitCounts.get(attributeValue);
         counts[categoryId]++;
         originalCounts[categoryId]++;
       }
 
+      //calculate maximum information gain
       double maxInformationGain = -Double.MAX_VALUE;
       String bestSplitValue = null;
       Long[] bestEqualToCounts = null;
@@ -225,6 +229,7 @@ public class NodeAttributePairSplits {
         }
       }
 
+      //build the reduce output string
       String result = getDefaultReduceResult(outputClasses);
 
       if (maxInformationGain != -Double.MAX_VALUE) {
@@ -246,6 +251,7 @@ public class NodeAttributePairSplits {
     private String reduceForNumeric(
             double[] rangeValues, Iterable<Text> values) {
 
+      //calculate max information gain by bucketing each instance
       double range = rangeValues[1] - rangeValues[0];
       int splitCount = Utilities.NUMERIC_SPLITS;
       int bucketCount = splitCount + 1;
@@ -273,9 +279,9 @@ public class NodeAttributePairSplits {
         Text textValue = iter.next();
         String[] tokens = textValue.toString().split(DELIM);
         double attributeValue = Double.valueOf(tokens[0]);
-        String targetCategory = tokens[1];
+        String outputClass = tokens[1];
 
-        int categoryId = outputClassIdMap.get(targetCategory);
+        int categoryId = outputClassIdMap.get(outputClass);
         Entry<Double, Long[]> entry = bucketCounts.ceilingEntry(attributeValue);
         if (entry != null) {
           Long[] counts = entry.getValue();

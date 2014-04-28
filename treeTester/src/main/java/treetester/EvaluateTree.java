@@ -1,4 +1,4 @@
-package decisiontree;
+package treetester;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,7 +14,7 @@ public class EvaluateTree {
   public static void main(String[] args) throws Exception {
 
     if (args.length != 2) {
-      System.out.println("Expected: EvaluateTree.jar <treeXML> <testCSV>");
+      System.out.println("Expected arguments: <treeXML> <testCSV>");
       return;
     }
 

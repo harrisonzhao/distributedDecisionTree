@@ -88,7 +88,6 @@ public class Utilities {
   }
 
   /**
-   * 
    * @param counts
    * @return 
    */
@@ -124,11 +123,7 @@ public class Utilities {
     return targetCounts;
   }
 
-  /**
-   * @param counts
-   * @param instanceCount
-   * @return 
-   */
+  //calculate entropy for given attribute
   public static double calculateEntropy(
           Long[] counts, 
           Long instanceCount) {
@@ -147,6 +142,7 @@ public class Utilities {
     return entropy;
   }
 
+  //calculates information gain by a training dataset
   public static double findInformationGain(
           Long[] originalCounts, 
           Long[] trueCounts, 

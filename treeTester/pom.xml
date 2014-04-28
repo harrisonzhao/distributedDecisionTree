@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cloudcomputing</groupId>
+    <artifactId>treetester</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>org.jdom</groupId>
+            <artifactId>jdom2</artifactId>
+            <version>2.0.5</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+    
+    <build>
+    <plugins>
+
+     <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>1.4</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <artifactSet>
+                <includes>
+                  <include>org.jdom:jdom2</include>
+                </includes>
+              </artifactSet>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+     <plugin>
+       <groupId>org.apache.maven.plugins</groupId>
+       <artifactId>maven-jar-plugin</artifactId>
+       <version>2.4</version>
+       <configuration>
+        <archive>
+          <manifest>
+            <mainClass>treetester.EvaluateTree</mainClass>
+          </manifest>
+        </archive>
+      </configuration>
+     </plugin>
+     <plugin>
+       <groupId>org.codehaus.mojo</groupId>
+       <artifactId>exec-maven-plugin</artifactId>
+       <version>1.2.1</version>
+       <executions>
+         <execution>
+           <goals>
+               <goal>exec</goal>
+           </goals>
+         </execution>
+       </executions>
+       <configuration>
+         <executable>java</executable>
+         <arguments>
+            <argument>-cp</argument>
+            <argument>${basedir}/target/${project.artifactId}-${project.version}.jar</argument>
+            <argument>treetester.EvaluateTree</argument>
+            <!-- tree to test -->
+            <argument>out.xml</argument>
+            <!-- test file -->
+            <argument>testwdbc.csv</argument>
+         </arguments>
+       </configuration>
+     </plugin>
+     <plugin>
+       <groupId>org.apache.maven.plugins</groupId>
+       <artifactId>maven-compiler-plugin</artifactId>
+       <version>2.3.2</version>
+       <configuration>
+         <source>1.7</source>
+         <target>1.7</target>
+         <debug>true</debug>
+         <debuglevel></debuglevel>
+         <optimize>false</optimize>
+         <compilerArgs>
+           <arg>-Xlint</arg>
+         </compilerArgs>
+       </configuration>
+     </plugin>
+     <plugin>
+       <groupId>org.apache.maven.plugins</groupId>
+       <artifactId>maven-resources-plugin</artifactId>
+       <version>2.2</version>
+     </plugin>
+   </plugins>
+   </build>
+   
+</project>
