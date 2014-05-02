@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+</head>
+
+<body>
+<script type="text/javascript" src="jkl-parsexml.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<script>
+	function FileHelper()
+	{}
+	{
+		FileHelper.readStringFromFileAtPath = function(pathOfFileToReadFrom)
+		{
+			var request = new XMLHttpRequest();
+			request.open("GET", pathOfFileToReadFrom, false);
+			request.send(null);
+			var returnValue = request.responseText;
+			return returnValue;
+		}
+	}
+
+	var fileName = "wdcbcategories.txt";
+	var text = FileHelper.readStringFromFileAtPath (fileName);
+	var categoryNames = text.split(",");
+	
+    var url = "tree.xml";
+    var xml = new JKL.ParseXML( url );
+    var data = xml.parse();
+	var root = data.tree.root;	
+	
+	function expand(node){
+		for (var i=0;i<node.classCounts.classCount.length;i++)
+		{
+			var classCategory = node.classCounts.classCount[i].classCategory;
+			var classCount = node.classCounts.classCount[i].count;
+
+		}
+		if(node.isLeaf == "false"){
+			var SplitAttribute = categoryNames[node.split.attributeId];
+			var TrueCondition;
+			var FalseCondition;
+			if(node.split.isCategorical == "false"){
+				TrueCondition =  "<=" + parseFloat(node.split.lessOrEqualTo).toFixed(2);
+			} else{
+				TrueCondition = node.split.equalTo;
+			}
+			if(node.split.isCategorical == "false"){
+				FalseCondition =  ">" + parseFloat(node.split.lessOrEqualTo).toFixed(2);
+			} else{
+				FalseCondition = "not " + node.split.equalTo;
+			}
+
+			expand(node.trueChild);
+			expand(node.falseChild);
+		}
+	}
+	
+	expand(root);
+</script>
+</body>
+</html>
+
