@@ -32,12 +32,12 @@
 	var root = data.tree.root;	
 	
 	function expand(node){
-		for (var i=0;i<node.classCounts.classCount.length;i++)
-		{
-			var classCategory = node.classCounts.classCount[i].classCategory;
-			var classCount = node.classCounts.classCount[i].count;
-
-		}
+//		for (var i=0;i<node.classCounts.classCount.length;i++)
+//		{
+//			var classCategory = node.classCounts.classCount[i].classCategory;
+//			var classCount = node.classCounts.classCount[i].count;
+//
+//		}
 		if(node.isLeaf == "false"){
 			var SplitAttribute = categoryNames[node.split.attributeId];
 			var TrueCondition;
@@ -55,6 +55,18 @@
 
 			expand(node.trueChild);
 			expand(node.falseChild);
+		} else{
+			var leafName;
+			var maxCount = -1;
+			for (var i=0;i<node.classCounts.classCount.length;i++)
+			{
+				var classCategory = node.classCounts.classCount[i].classCategory;
+				var classCount = node.classCounts.classCount[i].count;
+				if(classCount > maxCount){
+					leafName = classCategory;
+					maxCount = classCount;
+				}
+			}
 		}
 	}
 	
