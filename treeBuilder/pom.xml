@@ -125,7 +125,10 @@
             <argument>${basedir}/target/${project.artifactId}-${project.version}.jar</argument>
             <argument>/tmp/input/</argument>
             <argument>/tmp/output/${maven.build.timestamp}</argument>
-            <argument>9</argument>
+            <!-- edit below value, should be position of output class after tokenizing training line
+            for example: training line is 0,0,0,outputClass
+            after tokenizing, the index of outputClass is 3 (indexes start at 0) -->
+            <argument>36</argument>
          </arguments>
        </configuration>
      </plugin>

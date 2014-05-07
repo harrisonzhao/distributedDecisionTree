@@ -73,9 +73,9 @@
             <argument>${basedir}/target/${project.artifactId}-${project.version}.jar</argument>
             <argument>treetester.EvaluateTree</argument>
             <!-- tree to test -->
-            <argument>out.xml</argument>
+            <argument>tree.xml</argument>
             <!-- test file -->
-            <argument>testwdbc.csv</argument>
+            <argument>chesstest.csv</argument>
          </arguments>
        </configuration>
      </plugin>

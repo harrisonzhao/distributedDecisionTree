@@ -1,3 +1,7 @@
-on the testwdbc.csv file and using out.xml tree file
+on the testwdbc.csv file and using wdbctree.xml tree file
 the accuracy was 
-Result: 127/142 --- 89.43661971830986
+Result: correct: 127/ total: 142 - accuracy: 89.43661971830986
+
+on the chesstest.csv file and using chesstree.xml tree file
+the accuracy was
+Result: correct: 733/ total: 779 - accuracy: 94.09499358151476
