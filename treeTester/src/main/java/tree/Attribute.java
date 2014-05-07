@@ -199,55 +199,6 @@ public class Attribute implements Comparable<Attribute> {
   }
 
   @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final Attribute other = (Attribute) obj;
-    if (this.index != other.index) {
-      return false;
-    }
-    if (!Objects.equals(this.isCategorical, other.isCategorical) 
-            && (this.isCategorical == null 
-            || !this.isCategorical.equals(other.isCategorical))) {
-      return false;
-    }
-    if (Double.doubleToLongBits(this.minValue) 
-            != Double.doubleToLongBits(other.minValue)) {
-      return false;
-    }
-    if (Double.doubleToLongBits(this.maxValue) 
-            != Double.doubleToLongBits(other.maxValue)) {
-      return false;
-    }
-    if (this.count != other.count) {
-      return false;
-    }
-    return this.categoryMap == other.categoryMap 
-            || (this.categoryMap != null 
-            && this.categoryMap.equals(other.categoryMap));
-  }
-
-  @Override
-  public int hashCode() {
-    int hash = 7;
-    hash = 61 * hash + this.index;
-    hash = 61 * hash + 
-            (this.isCategorical != null ? this.isCategorical.hashCode() : 0);
-    hash = 61 * hash + (int) (Double.doubleToLongBits(this.minValue) 
-            ^ (Double.doubleToLongBits(this.minValue) >>> 32));
-    hash = 61 * hash + (int) (Double.doubleToLongBits(this.maxValue) 
-            ^ (Double.doubleToLongBits(this.maxValue) >>> 32));
-    hash = 61 * hash + (int) (this.count ^ (this.count >>> 32));
-    hash = 61 * hash + 
-            (this.categoryMap != null ? this.categoryMap.hashCode() : 0);
-    return hash;
-  }
-
-  @Override
   public int compareTo(Attribute attr) {
     return Integer.valueOf(
             this.getIndex()).compareTo(attr.getIndex());

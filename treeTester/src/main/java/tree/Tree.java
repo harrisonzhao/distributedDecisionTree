@@ -110,39 +110,4 @@ public class Tree {
     String output = outputter.outputString(this.toElement());
     return output;
   }
-  
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final Tree other = (Tree) obj;
-    if (this.outputClassAtIndex != other.outputClassAtIndex) {
-      return false;
-    }
-    if (this.attributes != other.attributes 
-            && (this.attributes == null 
-            || !this.attributes.equals(other.attributes))) {
-      return false;
-    }
-    if (this.root != other.root 
-            && (this.root == null 
-            || !this.root.equals(other.root))) {
-      return false;
-    }
-    return true;
-  }
-
-  @Override
-  public int hashCode() {
-    int hash = 7;
-    hash = 11 * hash + this.outputClassAtIndex;
-    hash = 11 * hash 
-            + (this.attributes != null ? this.attributes.hashCode() : 0);
-    hash = 11 * hash + (this.root != null ? this.root.hashCode() : 0);
-    return hash;
-  }
 }

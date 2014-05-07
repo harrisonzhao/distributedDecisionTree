@@ -11,34 +11,28 @@ import tree.Tree;
 
 public class EvaluateTree {
 
+  static String DELIM = ",";
   public static void main(String[] args) throws Exception {
 
     if (args.length != 2) {
       System.out.println("Expected arguments: <treeXML> <testCSV>");
       return;
     }
-
-
     SAXBuilder saxBuilder = new SAXBuilder();
     Reader xmlIn = new FileReader(args[0]);
-
     Element treeElement = saxBuilder.build(xmlIn).getRootElement();
     Tree tree = Tree.fromElement(treeElement);
-
     BufferedReader reader = new BufferedReader(new FileReader(args[1]));
     long errors = 0;
     long total = 0;
-
     while (reader.ready()) {
       String line = reader.readLine();
       line = line.trim();
       if (line.isEmpty()) {
         continue;
       }
-
-      String[] tokens = line.split(",");
+      String[] tokens = line.split(DELIM);
       ArrayList<Object> instance = new ArrayList<Object>();
-
       for (String token : tokens) {
         Object value;
         try {
@@ -53,17 +47,15 @@ public class EvaluateTree {
       String predictedClass = node.getPredictedClass();
       String actualClass = (String) instance.get(tree.getOutputClassIndex());
 
-      if (!predictedClass.equals(actualClass)) {
+      if (!predictedClass.equals(actualClass))
         errors++;
-      }
-
       total++;
     }
-
     long correct = total - errors;
-    double successRate = (double) correct / (double) total;
-    successRate *= 100;
-    System.out.println("Result: " + correct + "/" + total + " --- " + successRate);
+    double accuracy = (double) correct / (double) total;
+    accuracy *= 100;
+    System.out.println("Result: correct: " + correct + "/ total: " + 
+            total + " - accuracy: " + accuracy);
 
   }
 }

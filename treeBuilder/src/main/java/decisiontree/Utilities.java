@@ -123,7 +123,8 @@ public class Utilities {
     return targetCounts;
   }
 
-  //calculate entropy for given attribute
+  //calculate entropy, defined as -sum p*log(p)
+  //where p is probability = count / total instance count
   public static double calculateEntropy(
           Long[] counts, 
           Long instanceCount) {
@@ -134,7 +135,7 @@ public class Utilities {
     double invDataSize = 1.0 / instanceCount;
     for (Long count : counts) {
       if (count == 0) {
-        continue; // otherwise will return NaN
+        continue; // otherwise returns NaN
       }
       double p = count * invDataSize;
       entropy += -p * Math.log(p) / LOG2;
@@ -142,7 +143,12 @@ public class Utilities {
     return entropy;
   }
 
-  //calculates information gain by a training dataset
+  //calculates information gain by a training dataset for a given attribute
+  //attribute S
+  //T_s is the counts for the subset of training set induced by S
+  //T_sv is counts for the subset of training set 
+  //in which attribute S has value v
+  //InfoGain = Entropy(S)-sum((T_sv/T_s)*Entropy(S_c))
   public static double findInformationGain(
           Long[] originalCounts, 
           Long[] trueCounts, 

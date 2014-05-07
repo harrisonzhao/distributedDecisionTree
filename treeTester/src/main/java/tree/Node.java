@@ -198,47 +198,4 @@ public class Node {
 
     return node;
   }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final Node other = (Node) obj;
-    if (this.id != other.id) {
-      return false;
-    }
-    if (this.trueChild != other.trueChild 
-            && (this.trueChild == null 
-            || !this.trueChild.equals(other.trueChild))) {
-      return false;
-    }
-    if (this.falseChild != other.falseChild 
-            && (this.falseChild == null 
-            || !this.falseChild.equals(other.falseChild))) {
-      return false;
-    }
-    if (this.isLeaf != other.isLeaf) {
-      return false;
-    }
-    if (this.split != other.split 
-            && (this.split == null 
-            || !this.split.equals(other.split))) {
-      return false;
-    }
-    return true;
-  }
-
-  @Override
-  public int hashCode() {
-    int hash = 7;
-    hash = 29 * hash + this.id;
-    hash = 29 * hash + (this.trueChild != null ? this.trueChild.hashCode() : 0);
-    hash = 29 * hash + (this.falseChild != null ? this.falseChild.hashCode() : 0);
-    hash = 29 * hash + (this.split != null ? this.split.hashCode() : 0);
-    return hash;
-  }
 }

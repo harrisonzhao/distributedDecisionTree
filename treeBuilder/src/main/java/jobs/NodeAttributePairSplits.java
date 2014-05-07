@@ -219,6 +219,8 @@ public class NodeAttributePairSplits {
         long equalToInstanceCount = Utilities.sumCounts(equalToCounts);
         long notEqualToInstanceCount = Utilities.sumCounts(notEqualToCounts);
 
+        //not worth it to split on instances 
+        //with less than SPLIT_FLOOR yes/no counts
         if (informationGain > maxInformationGain
                 && equalToInstanceCount > Utilities.SPLIT_FLOOR
                 && notEqualToInstanceCount > Utilities.SPLIT_FLOOR) {
