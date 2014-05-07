@@ -59,6 +59,7 @@ public class DecisionTreeBuilder {
     Path categorySplitsPath = new Path(outputPath, "categorySplits");
     Path attributeSplitsPath = new Path(outputPath, "attributeSplits");
     Path treePath = new Path(outputPath, "tree/tree.xml");
+    FileSystem fs = FileSystem.get(conf);
 
     Job defineAttributesJob = setupDefineAttributesJob(
             conf, inputPath, attributePath);
