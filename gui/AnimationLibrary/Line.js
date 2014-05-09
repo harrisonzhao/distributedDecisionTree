@@ -85,7 +85,7 @@ function Line(n1, n2, color, cv, d, weight, anchorIndex)
 	{
 		return ((this.Node1 == n) || (this.Node2 == n));   
 	}
-	   
+	    
 	   
 	this.createUndoDisconnect  = function()
         {
@@ -114,8 +114,6 @@ function Line(n1, n2, color, cv, d, weight, anchorIndex)
 		var fromPos = this.Node1.getTailPointerAttachPos(this.Node2.x, this.Node2.y, this.anchorPoint);
 		var toPos = this.Node2.getHeadPointerAttachPos(this.Node1.x, this.Node1.y);
 
-		var fromPos = this.Node1.getTailPointerAttachPos(this.Node2.x, this.Node2.y, this.anchorPoint);
-		var toPos = this.Node2.getHeadPointerAttachPos(this.Node1.x, this.Node1.y);
 
 		var deltaX = toPos[0] - fromPos[0];
 		var deltaY = toPos[1] - fromPos[1];

@@ -162,9 +162,12 @@ AnimatedRectangle.prototype.right = function()
 
 AnimatedRectangle.prototype.getHeadPointerAttachPos = function(fromX, fromY)
 {
-	return this.getClosestCardinalPoint(fromX, fromY);			
+	return [this.centerX(),this.top()];//this.getClosestCardinalPoint(fromX, fromY);			
 }
-
+AnimatedRectangle.prototype.getTailPointerAttachPos = function(fromX, fromY)
+{
+	return [this.centerX(),this.bottom()];			
+}
 
 AnimatedRectangle.prototype.setWidth = function(wdth)
 {
@@ -280,10 +283,14 @@ AnimatedRectangle.prototype.draw = function(context)
 	
 	context.textAlign = 'center';
 	context.font         = '10px sans-serif';
-	context.textBaseline   = 'middle'; 
+	context.textBaseline   = 'bottom'; 
 	context.lineWidth = 1;
-	context.fillText(this.label, this.x, this.y); 
-	
+	 
+    
+    var lineheight = 12;
+    var lines = this.label.split('\n');
+    for (var i = 0; i<lines.length; i++)
+        context.fillText(lines[i], this.x, this.y + i*lineheight);
 	
 	
 }
