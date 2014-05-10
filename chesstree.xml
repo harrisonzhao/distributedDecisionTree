@@ -155,76 +155,26 @@
       <classCount classCategory="nowin" count="1150" />
       <classCount classCategory="won" count="1267" />
     </classCounts>
-    <split attributeId="20" isCategorical="true" equalTo="t" />
-    <trueChild id="1" isLeaf="true">
-      <classCounts>
-        <classCount classCategory="nowin" count="0" />
-        <classCount classCategory="won" count="447" />
-      </classCounts>
-    </trueChild>
-    <falseChild id="2" isLeaf="false">
+    <split attributeId="20" isCategorical="true" equalTo="f" />
+    <trueChild id="1" isLeaf="false">
       <classCounts>
         <classCount classCategory="nowin" count="1150" />
         <classCount classCategory="won" count="820" />
       </classCounts>
-      <split attributeId="9" isCategorical="true" equalTo="t" />
-      <trueChild id="3" isLeaf="true">
-        <classCounts>
-          <classCount classCategory="nowin" count="541" />
-          <classCount classCategory="won" count="0" />
-        </classCounts>
-      </trueChild>
-      <falseChild id="4" isLeaf="false">
+      <split attributeId="9" isCategorical="true" equalTo="f" />
+      <trueChild id="3" isLeaf="false">
         <classCounts>
           <classCount classCategory="nowin" count="609" />
           <classCount classCategory="won" count="820" />
         </classCounts>
-        <split attributeId="32" isCategorical="true" equalTo="t" />
+        <split attributeId="32" isCategorical="true" equalTo="f" />
         <trueChild id="5" isLeaf="false">
-          <classCounts>
-            <classCount classCategory="nowin" count="396" />
-            <classCount classCategory="won" count="30" />
-          </classCounts>
-          <split attributeId="17" isCategorical="true" equalTo="t" />
-          <trueChild id="7" isLeaf="false">
-            <classCounts>
-              <classCount classCategory="nowin" count="276" />
-              <classCount classCategory="won" count="4" />
-            </classCounts>
-            <split attributeId="8" isCategorical="true" equalTo="t" />
-            <trueChild id="13" isLeaf="true">
-              <classCounts>
-                <classCount classCategory="nowin" count="119" />
-                <classCount classCategory="won" count="0" />
-              </classCounts>
-            </trueChild>
-            <falseChild id="14" isLeaf="true">
-              <classCounts>
-                <classCount classCategory="nowin" count="157" />
-                <classCount classCategory="won" count="4" />
-              </classCounts>
-            </falseChild>
-          </trueChild>
-          <falseChild id="8" isLeaf="true">
-            <classCounts>
-              <classCount classCategory="nowin" count="120" />
-              <classCount classCategory="won" count="26" />
-            </classCounts>
-          </falseChild>
-        </trueChild>
-        <falseChild id="6" isLeaf="false">
           <classCounts>
             <classCount classCategory="nowin" count="213" />
             <classCount classCategory="won" count="790" />
           </classCounts>
-          <split attributeId="5" isCategorical="true" equalTo="t" />
-          <trueChild id="9" isLeaf="true">
-            <classCounts>
-              <classCount classCategory="nowin" count="0" />
-              <classCount classCategory="won" count="468" />
-            </classCounts>
-          </trueChild>
-          <falseChild id="10" isLeaf="false">
+          <split attributeId="5" isCategorical="true" equalTo="f" />
+          <trueChild id="7" isLeaf="false">
             <classCounts>
               <classCount classCategory="nowin" count="213" />
               <classCount classCategory="won" count="322" />
@@ -268,9 +218,59 @@
                 </classCounts>
               </falseChild>
             </falseChild>
+          </trueChild>
+          <falseChild id="8" isLeaf="true">
+            <classCounts>
+              <classCount classCategory="nowin" count="0" />
+              <classCount classCategory="won" count="468" />
+            </classCounts>
+          </falseChild>
+        </trueChild>
+        <falseChild id="6" isLeaf="false">
+          <classCounts>
+            <classCount classCategory="nowin" count="396" />
+            <classCount classCategory="won" count="30" />
+          </classCounts>
+          <split attributeId="17" isCategorical="true" equalTo="t" />
+          <trueChild id="9" isLeaf="false">
+            <classCounts>
+              <classCount classCategory="nowin" count="276" />
+              <classCount classCategory="won" count="4" />
+            </classCounts>
+            <split attributeId="8" isCategorical="true" equalTo="f" />
+            <trueChild id="13" isLeaf="true">
+              <classCounts>
+                <classCount classCategory="nowin" count="157" />
+                <classCount classCategory="won" count="4" />
+              </classCounts>
+            </trueChild>
+            <falseChild id="14" isLeaf="true">
+              <classCounts>
+                <classCount classCategory="nowin" count="119" />
+                <classCount classCategory="won" count="0" />
+              </classCounts>
+            </falseChild>
+          </trueChild>
+          <falseChild id="10" isLeaf="true">
+            <classCounts>
+              <classCount classCategory="nowin" count="120" />
+              <classCount classCategory="won" count="26" />
+            </classCounts>
           </falseChild>
         </falseChild>
+      </trueChild>
+      <falseChild id="4" isLeaf="true">
+        <classCounts>
+          <classCount classCategory="nowin" count="541" />
+          <classCount classCategory="won" count="0" />
+        </classCounts>
       </falseChild>
+    </trueChild>
+    <falseChild id="2" isLeaf="true">
+      <classCounts>
+        <classCount classCategory="nowin" count="0" />
+        <classCount classCategory="won" count="447" />
+      </classCounts>
     </falseChild>
   </root>
 </tree>
