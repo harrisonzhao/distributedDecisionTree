@@ -143,6 +143,9 @@ decVis.prototype.showDecision = function() {
         this.cmd("SetHighlight", attLabel.graphicID, 0);
         this.cmd("Step");
     }
+    this.cmd("SetHighlight",node.graphicID,1);
+    this.cmd("Step");this.cmd("Step");this.cmd("Step");this.cmd("Step");this.cmd("Step");
+    this.cmd("SetHighlight",node.graphicID,0);
     return this.commands;
 }
 decVis.prototype.insertCallback = function(event)
