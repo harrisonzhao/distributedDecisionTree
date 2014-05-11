@@ -143,9 +143,13 @@ decVis.prototype.showDecision = function() {
         this.cmd("SetHighlight", attLabel.graphicID, 0);
         this.cmd("Step");
     }
-    this.cmd("SetHighlight",node.graphicID,1);
-    this.cmd("Step");this.cmd("Step");this.cmd("Step");this.cmd("Step");this.cmd("Step");
-    this.cmd("SetHighlight",node.graphicID,0);
+    this.cmd("SetHighlight", node.graphicID, 1);
+    this.cmd("Step");
+    this.cmd("Step");
+    this.cmd("Step");
+    this.cmd("Step");
+    this.cmd("Step");
+    this.cmd("SetHighlight", node.graphicID, 0);
     return this.commands;
 }
 decVis.prototype.insertCallback = function(event)
@@ -167,7 +171,7 @@ decVis.prototype.generateAttributes = function() {
             min = parseFloat(atts[i].minValue);
             max = parseFloat(atts[i].maxValue);
             rnd = Math.random() * (max - min) + min;
-            val = rnd;
+            val = rnd.toFixed(2);
         }
         var catNode = categoryNode(this.nextIndex++, categoryNames[i], val);
         this.categories.push(catNode);
@@ -242,7 +246,17 @@ decVis.prototype.animateNewPositions = function(tree)
                 data += "\n=\n" + tree.split.equalTo;
             }
         } else {
-            data = "category...\n";
+            var maxCount = -1;
+            for (var i = 0; i < tree.classCounts.classCount.length; i++)
+            {
+                var classCategory = tree.classCounts.classCount[i].classCategory;
+                var classCount = tree.classCounts.classCount[i].count;
+                if (classCount > maxCount) {
+                    leafName = classCategory;
+                    maxCount = classCount;
+                }
+            }
+            data = leafName + "\n";
             tree.attID = null;
         }
 
