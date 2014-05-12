@@ -11,7 +11,6 @@ import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.jdom2.output.XMLOutputter;
 import tree.Attribute;
-import decisiontree.Utilities;
 
 /**
  * task 1 - only run once
