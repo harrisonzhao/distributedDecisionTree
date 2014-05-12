@@ -11,6 +11,7 @@ import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.jdom2.output.XMLOutputter;
 import tree.Attribute;
+import decisiontree.Utilities;
 
 /**
  * task 1 - only run once
@@ -85,15 +86,23 @@ public class DefineAttributes {
         Attribute attributeDefinition = new Attribute(key.get());
 
         Iterator<Text> iter = values.iterator();
-        while (iter.hasNext()) {
-          Text text = iter.next();
-          try {
-            double number = Double.valueOf(text.toString());
-            attributeDefinition.addNumericValue(number);
-          } catch (NumberFormatException e) {
+        if (attributeDefinition.isOutputClassAttribute(key.get())) {
+          while (iter.hasNext()) {
+            Text text = iter.next();
             attributeDefinition.addCategoricalValue(text.toString());
           }
+        } else {
+          while (iter.hasNext()) {
+            Text text = iter.next();
+            try {
+              double number = Double.valueOf(text.toString());
+              attributeDefinition.addNumericValue(number);
+            } catch (NumberFormatException e) {
+              attributeDefinition.addCategoricalValue(text.toString());
+            }
+          }
         }
+
 
         XMLOutputter outputter = new XMLOutputter();
         String xmlString = 

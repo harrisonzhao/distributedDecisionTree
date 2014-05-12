@@ -128,7 +128,7 @@
             <!-- edit below value, should be position of output class after tokenizing training line
             for example: training line is 0,0,0,outputClass
             after tokenizing, the index of outputClass is 3 (indexes start at 0) -->
-            <argument>36</argument>
+            <argument>9</argument>
          </arguments>
        </configuration>
      </plugin>

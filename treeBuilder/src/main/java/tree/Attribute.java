@@ -15,6 +15,7 @@ import org.jdom2.output.XMLOutputter;
  */
 public class Attribute implements Comparable<Attribute> {
 
+  private static int outputClassAtIndex;
   private int index;
   private Boolean isCategorical;
   private double minValue;
@@ -31,6 +32,14 @@ public class Attribute implements Comparable<Attribute> {
     count = 0;
   }
 
+  public static void setOutputClassAtIndex(int index) {
+    outputClassAtIndex = index;
+  }
+
+  public static boolean isOutputClassAttribute(int index) {
+    return outputClassAtIndex == index;
+  }
+  
   public int getIndex() {
     return index;
   }

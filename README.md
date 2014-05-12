@@ -6,6 +6,7 @@ It produces a binary decision tree formatted in an XML file. <br>
 The program assumes that categorical values cannot be parsed as doubles. <br>
 treeBuilder contains the project for building the tree. <br>
 treeTester contains the project for testing a built tree. <br>
+The output class can be a numerical value, however if there are many numerical values relating to a given output class, the algorithm will not produce good results. <br>
 
 To Run
 ===========

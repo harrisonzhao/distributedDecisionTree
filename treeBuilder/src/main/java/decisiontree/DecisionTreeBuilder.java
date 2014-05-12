@@ -54,6 +54,10 @@ public class DecisionTreeBuilder {
     Path inputPath = new Path(otherArgs[0]);
     Path outputPath = new Path(otherArgs[1]);
     int outputClassAtIndex = Integer.valueOf(otherArgs[2]);
+
+    //be warned that numeric output class may have many values
+    Attribute.setOutputClassAtIndex(outputClassAtIndex);
+
     Path dataPath = inputPath;
     Path attributePath = new Path(outputPath, "attributes");
     Path categorySplitsPath = new Path(outputPath, "categorySplits");
