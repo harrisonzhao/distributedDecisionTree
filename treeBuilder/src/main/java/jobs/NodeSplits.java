@@ -22,7 +22,7 @@ public class NodeSplits {
      * Splits line
      * format is:
      * (leaf,attributeId, attributeSplitRule, information gain,
-     * [category1:category1counts, category2:category2counts ... ], [cate ...])
+     * [classcounts1] [classcounts2])
      * @param context
      * @throws IOException
      * @throws InterruptedException
