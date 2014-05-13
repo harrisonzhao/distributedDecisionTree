@@ -1,0 +1,11 @@
+chess: 4min, 4.3 sec
+census: 29min 35 sec
+
+17 nodes
+SUSY_1000: 3 min 24 sec
+(9 nodes: 4min, 13 sec)
+SUSY_10000: 10min 51 sec
+SUSY_100000: 32 min, 49 sec
+9 nodes:
+SUSY_1000000: 81 min, 24 sec
+SUSY_5000000: ~9 hour, 36 min
