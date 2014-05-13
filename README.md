@@ -10,6 +10,7 @@ The output class can be a numerical value, however if there are many numerical v
 
 To Run
 ===========
+see instructions folder for detailed instructions and bashrc file <br>
 change directory to either treeBuilder or treeTester <br>
 edit the command line arguments through pom.xml <br>
 the input files and output class location is specified as command line arguments <br>
