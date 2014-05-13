@@ -8,4 +8,4 @@ SUSY_10000: 10min 51 sec
 SUSY_100000: 32 min, 49 sec
 9 nodes:
 SUSY_1000000: 81 min, 24 sec
-SUSY_5000000: ~9 hour, 36 min
+SUSY_5000000: 159 min, 18 sec
