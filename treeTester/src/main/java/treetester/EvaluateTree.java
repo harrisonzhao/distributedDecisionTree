@@ -33,14 +33,20 @@ public class EvaluateTree {
       }
       String[] tokens = line.split(DELIM);
       ArrayList<Object> instance = new ArrayList<Object>();
+      int index = 0;
       for (String token : tokens) {
         Object value;
-        try {
-          value = Double.valueOf(token);
-        } catch (NumberFormatException e) {
+        if (index == tree.getOutputClassIndex()) {
           value = token;
+        } else {
+          try {
+            value = Double.valueOf(token);
+          } catch (NumberFormatException e) {
+            value = token;
+          }
         }
         instance.add(value);
+        ++index;
       }
 
       Node node = tree.evaluateToNode(instance);
