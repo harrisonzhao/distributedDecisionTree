@@ -5,3 +5,7 @@ Result: correct: 127/ total: 142 - accuracy: 89.43661971830986
 on the chesstest.csv file and using chesstree.xml tree file
 the accuracy was
 Result: correct: 733/ total: 779 - accuracy: 94.09499358151476
+
+on the SUSY dataset, using a subset of the dataset (1 million of 5 million)
+the accuracy was 
+Result: correct: 80983/ total: 100000 - accuracy: 80.98300000000000
