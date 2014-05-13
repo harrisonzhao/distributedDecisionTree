@@ -73,7 +73,7 @@
             <argument>${basedir}/target/${project.artifactId}-${project.version}.jar</argument>
             <argument>treetester.EvaluateTree</argument>
             <!-- tree to test -->
-            <argument>tree.xml</argument>
+            <argument>chesstree.xml</argument>
             <!-- test file -->
             <argument>chesstest.csv</argument>
          </arguments>
