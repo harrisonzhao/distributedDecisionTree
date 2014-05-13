@@ -25,6 +25,7 @@ output tree file will be in /tmp/outputs/tree <br>
 output tree file will also be in local project directory <br>
 chess dataset obtained from: https://archive.ics.uci.edu/ml/datasets/Chess+(King-Rook+vs.+King-Pawn) <br>
 wdbc dataset obtained from: https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic) <br>
+SUSY dataset (demonstrating scalability) obtained from http://archive.ics.uci.edu/ml/datasets/SUSY <br>
 
 
 
